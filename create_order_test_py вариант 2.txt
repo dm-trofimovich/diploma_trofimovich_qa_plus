@@ -1,0 +1,14 @@
+import sender_stand_request
+
+# Шаг 1: Выполняем запрос на создание заказа и возвращаем его трек
+def create_order_by_track():
+    response = sender_stand_request.post_new_order(data.order_body)
+    return response.json()["track"]
+
+# Шаг 2: Выполняем запрос на получение заказа по треку заказа
+def test_create_and_get_new_order():
+    track_order = create_order_by_track()
+    response = sender_stand_request.get_order_by_track(track_order)
+
+    # Проверяем, что код ответа равен 200 (успешное получение заказа по треку)
+    assert response.status_code == 200
